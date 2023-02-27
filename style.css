@@ -1,0 +1,538 @@
+* {
+  box-sizing: border-box;
+  
+}
+
+body {
+  width: 99%;
+  height: 96vh;
+  background-color: black;
+  color: white;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+body main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: inherit;
+  height: inherit;
+}
+body main .btn-area {
+  position: relative;
+  width: calc(210px + 2px);
+  height: calc(60px + 2px);
+
+  top: 50px;
+}
+body main .btn-area:hover .main-btn {
+  opacity: 0.25;
+}
+body main .btn-area .main-btn {
+  width: inherit;
+  height: inherit;
+  opacity: 0.15;
+  transition: 250ms;
+}
+body main .btn-area .main-btn rect {
+  width: 210px;
+  height: 60px;
+  transition: 250ms;
+}
+body main .btn-area .progress-area,
+body main .btn-area .complete-area {
+  position: absolute;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  color: #1578ff;
+  user-select: none;
+  opacity: 1;
+}
+body main .btn-area .progress-area .area-left,
+body main .btn-area .complete-area .area-left {
+  display: flex;
+}
+body main .btn-area .progress-area .area-left svg,
+body main .btn-area .complete-area .area-left svg {
+  margin-right: 1rem;
+  opacity: 0;
+}
+body main .btn-area .progress-area .area-left span,
+body main .btn-area .complete-area .area-left span {
+  width: 50px;
+  text-align: right;
+}
+body main .btn-area .progress-area .area-right,
+body main .btn-area .complete-area .area-right {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 20px;
+  margin-right: -1rem;
+  padding-left: 1rem;
+  border-left: 1px solid #1578ff44;
+  overflow: hidden;
+  cursor: pointer;
+}
+body main .btn-area .progress-area .area-right:hover,
+body main .btn-area .complete-area .area-right:hover {
+  height: 40px;
+  transition: 250ms height;
+}
+body main .btn-area .progress-area .area-right:hover svg,
+body main .btn-area .complete-area .area-right:hover svg {
+  opacity: 1;
+}
+body main .btn-area .progress-area .area-right svg,
+body main .btn-area .complete-area .area-right svg {
+  opacity: 0.5;
+  transition: 250ms;
+}
+body main .btn-area .progress-area .area-right .btn-play,
+body main .btn-area .complete-area .area-right .btn-play {
+  position: absolute;
+  transform: translateY(40px);
+}
+body main .btn-area .complete-area {
+  justify-content: space-around;
+  display: none;
+}
+body main .btn-area .complete-area svg {
+  width: 40px;
+  height: 20px;
+  margin-right: 1rem;
+  padding-right: 1rem;
+  border-right: 1px solid #fff6;
+}
+body main .btn-area .complete-area svg path {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 6px;
+  opacity: 0;
+}
+body main .btn-area .complete-area span {
+  color: #fffd;
+  padding-bottom: 1px;
+  opacity: 0;
+}
+body main .btn-area .frame-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: inherit;
+  height: inherit;
+}
+body main .btn-area .frame-btn rect {
+  width: 210px;
+  height: 60px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+body .instagram-link {
+  position: absolute;
+  right: 50px;
+  bottom: 50px;
+}
+body .instagram-link i {
+  color: #1578ff;
+  transition: 150ms;
+  font-size: 2rem;
+  opacity: 0.5;
+}
+body .instagram-link i:hover {
+  opacity: 1;
+}
+
+.switch-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+}
+
+.switch {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.switch-label {
+  display: inline-block;
+  background-color: #dddddd;
+  border-radius: 50px;
+  height: 28px;
+  width: 60px;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.switch-inner {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50px;
+  background-color: #ffffff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 0.2s ease-in-out;
+}
+
+.switch-switch {
+  display: block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  transition: left 0.2s ease-in-out;
+}
+
+.switch:checked + .switch-label {
+  background-color: #000000;
+}
+
+.switch:checked + .switch-label .switch-inner {
+  transform: translateX(-32px);
+}
+
+.switch:checked + .switch-label .switch-switch {
+  left: 37px;
+}
+
+
+
+.progress-area {
+  display: none;
+}
+/* Стиль для кнопки "Начать" */
+.start-button {
+  position: absolute;
+  background-color: rgb(19, 105, 226);
+  border: none;
+  color: white;
+  padding: 7px 57px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 10px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  z-index: 1;
+}
+
+/* Анимация исчезновения кнопки и появления счетчика */
+.start-button.clicked {
+  animation: fade-out 0.5s ease-out forwards;
+}
+
+.progress-area.show {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    display: block;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.btn-area {
+  opacity: 0; /* делаем блок невидимым */
+  transition: opacity 0.5s ease-in-out; /* добавляем плавный переход */
+}
+
+.btn {
+	display: inline-block;	
+	box-sizing: border-box;
+	padding: 0 25px;
+	outline: none;
+	border: 1px solid #fff;
+	border-radius: 50px;
+	height: 46px;
+	line-height: 46px;
+	font-size: 14px;
+	text-decoration: none;
+	color: #444;
+	background-color: #fff;
+	box-shadow: 0 4px 6px rgb(65 132 144 / 10%), 0 1px 3px rgb(0 0 0 / 8%);
+	cursor: pointer;
+	user-select: none;
+	appearance: none;
+	touch-action: manipulation;  
+	vertical-align: top;
+	transition: box-shadow 0.2s;
+}
+.wrapper__text {
+  position: absolute;
+  top: -65px;
+  width: 50%;
+  height: 100%;
+}
+
+.text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  text-align: center;
+}
+
+.popup-content {
+  display: inline-block;
+  margin-top: 10%;
+  max-width: 30%;
+  letter-spacing: 1px;
+  max-height: 80%;
+  overflow-y: auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.popup-text {
+  color: black;
+}
+
+.close-popup {
+  
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #ccc;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.help-icon {
+  position: absolute;
+  bottom: 40vh;
+  /* left: 50%;
+  transform: translateX(-50%); */
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 20px;
+  cursor: pointer;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+
+.help-icon:before {
+  content: "?";
+}
+
+.help-icon:hover {
+  background-color: #f2f2f2;
+}
+
+
+/* Пульсация */
+
+.container {
+  width:100%;
+  height:100%;
+  display:none;
+  animation: fade-in 0.5s ease-in-out forwards;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  position:absolute;
+  text-align:center;
+  color:white;
+}
+
+
+.circlecontainer {
+  position:absolute;
+  z-index:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+ 
+}
+
+.circle {
+  width:550px;
+  height:550px;
+  border: 0px solid #000000;
+  border-radius:50%;
+  position:absolute;
+  z-index:2;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  animation-name:air;
+  animation-duration: 3s;
+  animation-delay: 0s;
+  animation-iteration-count:infinite;
+    animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+  -webkit-box-shadow: inset 0px 0px 18px 0px rgba(21,120,255);
+-moz-box-shadow: inset 0px 0px 18px 0px rgba(21,120,255);
+box-shadow: inset 0px 0px 18px 0px rgba(21,120,255);
+color:black;
+}
+
+.circle2 {
+  width:600px;
+  height:600px;
+  border:1px solid rgb(12, 99, 170);
+  border-radius:50%;
+  position:absolute;
+  z-index:1;
+  opacity:0.75;
+  animation-name:air;
+  animation-duration: 3s;
+  animation-delay: 0.25s;
+  animation-iteration-count:infinite;
+    animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+  -webkit-box-shadow: inset 0px 0px 18px 0px rgba(21,120,255);
+-moz-box-shadow: inset 0px 0px 18px 0px rgba(21,120,255);
+box-shadow: inset 0px 0px 18px 0px rgba(21,120,255);
+}
+.circle3 {
+  width:650px;
+  height:650px;
+  border:1px solid rgb(12, 99, 170);
+  border-radius:50%;
+  position:absolute;
+  z-index:1;
+  opacity:0.50;
+  animation-name:air;
+  animation-duration: 3s;
+  animation-delay: 0.5s;
+  animation-iteration-count:infinite;
+    animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+  -webkit-box-shadow: inset 0px 0px 18px 0px rgba(21,120,255);
+-moz-box-shadow: inset 0px 0px 18px 0px rgba(21,120,255);
+box-shadow: inset 0px 0px 18px 0px rgba(21,120,255);
+}
+.circle4 {
+  width:700px;
+  height:700px;
+  background-color:rgba(255, 255, 255, 0);
+  border:1px solid rgb(12, 99, 170);
+  border-radius:50%;
+  position:absolute;
+  z-index:1;
+  opacity:0.25;
+  animation-name:air;
+  animation-duration: 3s;
+  animation-delay: 0.75s;
+  animation-iteration-count:infinite;
+    animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+  -webkit-box-shadow: inset 0px 0px 18px 0px rgba(21,120,255);
+-moz-box-shadow: inset 0px 0px 18px 0px rgba(21,120,255);
+box-shadow: inset 0px 0px 18px 0px rgba(21,120,255);
+}
+
+
+
+/*Animation*/
+@keyframes air {
+  from { transform: scale(1);}
+       to { transform: scale(1.1)}
+}
+
+@media screen and (max-width: 980px) {
+  .popup-content {
+    max-width: 100%;
+  }
+  .text {
+    top: 50%;
+    font-size: 20px;
+  }
+  .wrapper__text {
+    width: 100%;
+  }
+  .btn-area {
+    top: 74px!important
+  }
+  .circle {
+    width: 350px;
+    height: 350px;
+  }
+  .circle2 {
+    width: 400px;
+    height: 400px;
+  }
+  .circle3 {
+    width: 450px;
+    height: 450px;
+  }
+  .circle4 {
+    width: 500px;
+    height: 500px;
+  }
+}
+
+.language-toggle-wrapper {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 5;
+}
+.language-toggle-wrapper img {
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  margin-left: 10px;
+}
+
+
+
+
