@@ -16,6 +16,7 @@ function loadText(language) {
         document.getElementById('text__switch8').textContent = data.text__switch8;
         document.getElementById('text__switch9').textContent = data.text__switch9;
         document.getElementById('text__switch10').textContent = data.text__switch10;
+        
       });
   }
   

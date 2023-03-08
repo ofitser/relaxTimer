@@ -275,6 +275,7 @@ body .instagram-link i:hover {
 	border: 1px solid #fff;
 	border-radius: 50px;
 	height: 46px;
+  min-width: 98px;
 	line-height: 46px;
 	font-size: 14px;
 	text-decoration: none;
@@ -518,6 +519,9 @@ box-shadow: inset 0px 0px 18px 0px rgba(21,120,255);
     width: 500px;
     height: 500px;
   }
+  #text1__morph, #text2__morph {
+    font-size: 90px!important
+  }
 }
 
 .language-toggle-wrapper {
@@ -536,3 +540,42 @@ box-shadow: inset 0px 0px 18px 0px rgba(21,120,255);
 
 
 
+/* Explanation in JS tab */
+
+/* Cool font from Google Fonts! */
+@import url('https://fonts.googleapis.com/css?family=Raleway:900&display=swap');
+
+body {
+	margin: 0px;
+}
+
+#container__morph {
+	/* Center the text in the viewport. */
+	position: absolute;
+	margin: auto;
+	width: 100vw;
+	height: 80pt;
+	top: -400px;
+	bottom: 0;
+	
+	/* This filter is a lot of the magic, try commenting it out to see how the morphing works! */
+	filter: url(#threshold) blur(0.6px);
+}
+
+/* Your average text styling */
+#text1__morph, #text2__morph {
+	position: absolute;
+	width: 100%;
+	display: inline-block;
+	
+	font-family: 'Raleway', sans-serif;
+	font-size: 80pt;
+	
+	text-align: center;
+	
+	user-select: none;
+}
+
+#filters {
+  position: absolute;
+}
